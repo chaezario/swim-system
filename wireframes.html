@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wireframe – XYZ Swimming Club</title>
+<style>
+:root{--bg:#f3f4f6;--ink:#1f2937;--mut:#6b7280;--line:#9ca3af;--box:#e5e7eb;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--bg:#111827;--ink:#e5e7eb;--mut:#9ca3af;--line:#6b7280;--box:#374151;--card:#1f2937}}
+*{box-sizing:border-box}body{margin:0;font:14px/1.4 system-ui,sans-serif;background:var(--bg);color:var(--ink);padding:16px}
+h1{font-size:20px;margin:0 0 4px}p.s{color:var(--mut);margin:0 0 12px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.bar button{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:6px 12px;border-radius:6px;cursor:pointer}
+.bar button.on{background:var(--ink);color:var(--bg)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.wf{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px}
+.wf h2{font-size:14px;margin:0 0 8px}.tag{font-size:11px;color:var(--mut);font-weight:400}
+.scr{border:2px solid var(--line);border-radius:6px;overflow:hidden;display:flex;min-height:260px;font-size:11px}
+.scr.m{max-width:230px;margin:0 auto;flex-direction:column}
+.sb{width:70px;background:var(--box);padding:6px;border-right:1px solid var(--line)}
+.sb i{display:block;height:8px;background:var(--line);border-radius:2px;margin:7px 0;opacity:.7}
+.main{flex:1;padding:8px;min-width:0}
+.top{height:20px;background:var(--box);border-bottom:1px solid var(--line);padding:4px 8px;font-size:10px;color:var(--mut)}
+.bn{display:flex;justify-content:space-around;background:var(--box);border-top:1px solid var(--line);padding:6px 0;margin-top:auto;font-size:10px;color:var(--mut)}
+.hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;font-weight:600;font-size:12px}
+.btn{border:1px solid var(--ink);padding:2px 7px;border-radius:4px;font-size:10px;font-weight:600;white-space:nowrap}
+.btn.p{background:var(--ink);color:var(--bg)}
+.fl{display:flex;gap:4px;margin-bottom:6px;flex-wrap:wrap}.fl span,.fld{border:1px dashed var(--line);padding:3px 6px;border-radius:4px;color:var(--mut)}
+.fl span{flex:1;min-width:60px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:6px}.cards div{background:var(--box);padding:6px;border-radius:4px;height:38px;font-size:10px}
+table{width:100%;border-collapse:collapse;margin-bottom:6px}th,td{border:1px solid var(--line);padding:3px 4px;text-align:left;font-size:10px}th{background:var(--box)}
+td{color:var(--mut)}.fld{display:block;margin-bottom:5px}.fld b{display:block;color:var(--ink);font-weight:600;font-size:10px}
+.tabs{display:flex;border-bottom:1px solid var(--line);margin-bottom:6px}.tabs span{padding:3px 8px;font-size:10px;color:var(--mut)}.tabs span:first-child{border-bottom:2px solid var(--ink);color:var(--ink);font-weight:600}
+.item{border:1px solid var(--line);border-radius:4px;padding:5px;margin-bottom:4px;display:flex;justify-content:space-between;gap:4px;align-items:center}
+.seg{display:flex;gap:2px}.seg u{text-decoration:none;border:1px solid var(--line);padding:1px 4px;border-radius:3px;font-size:9px}
+.note{background:var(--box);border-left:3px solid var(--ink);padding:4px 6px;margin:4px 0;font-size:10px;color:var(--mut)}
+.pg{text-align:right;color:var(--mut);font-size:10px}
+.ctr{margin:auto;width:70%}.ctr .fld{padding:5px 6px}
+.cap{font-size:11px;color:var(--mut);margin-top:6px}
+</style>
+</head>
+<body>
+<h1>Wireframe Low-Fidelity – XYZ Swimming Club</h1>
+<p class="s">21 halaman. Kotak abu-abu adalah placeholder konten; data dummy. Penjelasan lengkap tiap halaman: <code>documentation/wireframe-spec.md</code>.</p>
+<div class="bar" id="bar"></div>
+<div class="grid" id="g"></div>
+<script>
+const T=(h,n)=>({k:'t',h,n:n||3}), H=(t,b)=>({k:'h',t,b}), F=(a)=>({k:'f',a}), C=(a)=>({k:'c',a}),
+ FM=(a,b)=>({k:'fm',a,b}), TB=(a)=>({k:'tb',a}), IT=(a)=>({k:'it',a}), N=(t)=>({k:'n',t}), PG=()=>({k:'pg'}), SG=(a)=>({k:'sg',a});
+const A='admin',P='pelatih';
+const W=[
+[1,'Login','Umum','login',[FM(['Email / username*','Kata sandi* (tampilkan/sembunyikan)'],['Masuk']),N('Pesan error umum di atas form')]],
+[2,'Dashboard Admin',A,A,[H('Dashboard'),C(['Sesi hari ini','Sesi belum diisi','Siswa aktif','Pelatih aktif']),H('Sesi belum diisi',['Lihat semua']),T(['Sesi','Kelas','Pelatih','Status']),N('Empty: Semua sesi hari ini sudah diisi')]],
+[3,'Data Pelatih',A,A,[H('Data Pelatih',['+ Tambah']),F(['Cari nama…','Status ▾']),T(['Nama','Kontak','Jadwal','Status','Aksi']),PG()]],
+[4,'Form Pelatih',A,A,[H('Tambah / Edit Pelatih'),FM(['Nama lengkap*','Kontak*','Email akun*','Status ▾'],['Batal','Simpan'])]],
+[5,'Data Siswa',A,A,[H('Data Siswa',['+ Tambah']),F(['Cari nama…','Kelas ▾','Status ▾']),T(['Nama','Kelas','Wali','Status','Aksi']),PG()]],
+[6,'Form Siswa',A,A,[H('Tambah / Edit Siswa'),FM(['Nama lengkap*','Kelas*','Nama orang tua/wali','Kontak wali','Status ▾'],['Batal','Simpan'])]],
+[7,'Data Kelas',A,A,[H('Data Kelas',['+ Tambah']),F(['Cari kelas…']),T(['Kelas','Siswa','Status','Aksi']),PG()]],
+[8,'Form Kelas',A,A,[H('Tambah / Edit Kelas'),FM(['Nama kelas*','Keterangan','Status ▾'],['Batal','Simpan'])]],
+[9,'Data Jadwal',A,A,[H('Data Jadwal',['+ Tambah']),F(['Kelas ▾','Pelatih ▾','Hari ▾']),T(['Kelas','Pelatih','Hari','Jam','Aksi']),PG()]],
+[10,'Form Jadwal',A,A,[H('Tambah / Edit Jadwal'),FM(['Kelas*','Pelatih*','Hari*','Jam mulai*','Jam selesai*'],['Batal','Simpan']),N('Peringatan jika bentrok')]],
+[11,'Absensi Pelatih',A,A,[H('Absensi'),TB(['Pelatih','Siswa','Riwayat']),F(['Tanggal ▾','Pelatih ▾']),T(['Sesi','Pelatih','Status','Check-in','Aksi']),N('Aksi: Koreksi (alasan wajib)')]],
+[12,'Absensi Siswa (Admin)',A,A,[H('Absensi'),TB(['Siswa','Pelatih','Riwayat']),F(['Tanggal ▾','Kelas ▾']),IT(['Kelas A · 16.00 · Lengkap','Kelas B · 17.00 · Belum diisi','Kelas C · 18.00 · Sebagian']),N('Buka sesi → daftar siswa + koreksi')]],
+[13,'Riwayat Absensi (Admin)',A,A,[H('Absensi'),TB(['Riwayat','Siswa','Pelatih']),F(['Periode ▾','Kelas ▾','Cari…']),T(['Tanggal','Kelas','Pelatih','Hadir/Total','Aksi']),PG()]],
+[14,'Laporan Absensi',A,A,[H('Laporan',['Cetak']),F(['Periode*','Kelas ▾','Siswa ▾','Pelatih ▾']),C(['Total sesi','% hadir','Izin + sakit','Alpa']),T(['Siswa','Hadir','Izin','Sakit','Alpa']),PG()]],
+[15,'Detail Laporan',A,A,[H('Detail: Nama Siswa',['Cetak']),C(['Hadir','Izin','Sakit','Alpa']),T(['Tanggal','Sesi','Pelatih','Status']),N('Link kembali ke Laporan')]],
+[16,'Manajemen Pengguna',A,A,[H('Pengguna',['+ Tambah']),F(['Cari…','Peran ▾']),T(['Nama','Peran','Status','Aksi']),N('Aksi: Atur ulang sandi, Nonaktifkan')]],
+[17,'Dashboard Pelatih',P,P,[H('Halo, [Nama]'),{k:'it',a:['SESI HARI INI · Kelas A · 16.00',]},{k:'sg',a:['Check-in','Buka absensi']},N('Banner: 1 sesi belum diisi'),IT(['Berikutnya · Kelas B · 17.00'])]],
+[18,'Jadwal Latihan',P,P,[H('Jadwal'),TB(['Minggu ini','Semua']),IT(['Senin · Kelas A · 16.00','Rabu · Kelas B · 17.00','Jumat · Kelas A · 16.00'])]],
+[19,'Detail Jadwal',P,P,[H('Kelas A · Senin 16.00'),IT(['Pelatih: [Nama]','Siswa: n orang','Status sesi: Belum diisi']),{k:'sg',a:['Mulai absensi']},N('Sesi lain hari: hanya lihat')]],
+[20,'Form Absensi Siswa',P,P,[H('Absensi · Kelas A',['Semua Hadir']),N('Tanggal, jam, pelatih'),{k:'it2',a:['Siswa 1','Siswa 2','Siswa 3','Siswa 4']},N('Bar bawah: terisi 0/4 · Simpan (nonaktif)')]],
+[21,'Riwayat Pelatih',P,P,[H('Riwayat'),TB(['Kelas','Pribadi']),F(['Periode ▾']),IT(['12 Nov · Kelas A · 8/9 hadir','10 Nov · Kelas A · 9/9 hadir'])]]
+];
+const nav={admin:['Dashboard','Data ▸','Absensi','Laporan','Pengguna'],pelatih:['Beranda','Jadwal','Riwayat','Akun']};
+function blk(b){switch(b.k){
+case 'h':return `<div class="hd"><span>${b.t}</span>${(b.b||[]).map(x=>`<span class="btn p">${x}</span>`).join('')}</div>`;
+case 'f':return `<div class="fl">${b.a.map(x=>`<span>${x}</span>`).join('')}</div>`;
+case 'c':return `<div class="cards">${b.a.map(x=>`<div>${x}</div>`).join('')}</div>`;
+case 't':return `<table><tr>${b.h.map(x=>`<th>${x}</th>`).join('')}</tr>${[...Array(b.n)].map(()=>`<tr>${b.h.map(()=>'<td>▭▭▭</td>').join('')}</tr>`).join('')}</table>`;
+case 'fm':return b.a.map(x=>`<span class="fld"><b>${x}</b>▭▭▭▭▭</span>`).join('')+`<div style="text-align:right">${b.b.map((x,i)=>`<span class="btn ${i?'p':''}">${x}</span> `).join('')}</div>`;
+case 'tb':return `<div class="tabs">${b.a.map(x=>`<span>${x}</span>`).join('')}</div>`;
+case 'it':return b.a.map(x=>`<div class="item">${x}<span class="btn">›</span></div>`).join('');
+case 'it2':return b.a.map(x=>`<div class="item">${x}<span class="seg"><u>H</u><u>I</u><u>S</u><u>A</u></span></div>`).join('');
+case 'sg':return `<div style="text-align:center;margin:6px 0">${b.a.map((x,i)=>`<span class="btn ${i?'p':''}">${x}</span> `).join('')}</div>`;
+case 'n':return `<div class="note">${b.t}</div>`;
+case 'pg':return `<div class="pg">‹ 1 2 3 ›</div>`;}}
+function scr(r){const [n,t,role,lay,bl]=r;
+ if(lay==='login')return `<div class="scr"><div class="main"><div class="ctr"><div class="hd" style="justify-content:center">Logo · XYZ Swimming Club</div>${bl.map(blk).join('')}</div></div></div>`;
+ if(lay===A)return `<div class="scr"><div class="sb">${nav.admin.map(()=>'<i></i>').join('')}</div><div class="main"><div class="note" style="margin:0 0 6px">Breadcrumb › ${t}</div>${bl.map(blk).join('')}</div></div>`;
+ return `<div class="scr m"><div class="top">XYZ · ☰</div><div class="main">${bl.map(blk).join('')}</div><div class="bn">${nav.pelatih.map(x=>`<span>${x}</span>`).join('')}</div></div>`;}
+const g=document.getElementById('g'),bar=document.getElementById('bar');
+g.innerHTML=W.map(r=>`<section class="wf" data-r="${r[2]}"><h2>${r[0]}. ${r[1]} <span class="tag">· ${r[2]}</span></h2>${scr(r)}</section>`).join('');
+['Semua','Umum','Admin','Pelatih'].forEach((l,i)=>{const b=document.createElement('button');b.textContent=l;if(!i)b.className='on';
+ b.onclick=()=>{[...bar.children].forEach(x=>x.className='');b.className='on';
+  g.querySelectorAll('.wf').forEach(w=>w.style.display=(!i||w.dataset.r.toLowerCase()===l.toLowerCase())?'':'none');};bar.appendChild(b);});
+</script>
+</body>
+</html>
