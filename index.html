@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Prototype – XYZ Swimming Club</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light dark;
+--pri:#1E3A8A;--prih:#172B6B;--onp:#fff;--sec:#DBEAFE;--seci:#1E40AF;--ok:#15803D;--okb:#DCFCE7;--oki:#166534;--wrb:#FEF3C7;--wri:#92400E;--dg:#B91C1C;--dgb:#FEE2E2;--dgi:#991B1B;--bg:#F9FAFB;--sf:#fff;--bd:#E5E7EB;--tx:#111827;--tx2:#374151;--mu:#6B7280;--ac:#3B82F6}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--pri:#60A5FA;--prih:#93C5FD;--onp:#0B1220;--sec:#1E3A8A;--seci:#BFDBFE;--okb:#14532D;--oki:#BBF7D0;--ok:#4ADE80;--wrb:#78350F;--wri:#FDE68A;--dg:#F87171;--dgb:#7F1D1D;--dgi:#FECACA;--bg:#0F172A;--sf:#1E293B;--bd:#334155;--tx:#F1F5F9;--tx2:#CBD5E1;--mu:#94A3B8}}
+:root[data-theme=dark]{--pri:#60A5FA;--prih:#93C5FD;--onp:#0B1220;--sec:#1E3A8A;--seci:#BFDBFE;--okb:#14532D;--oki:#BBF7D0;--ok:#4ADE80;--wrb:#78350F;--wri:#FDE68A;--dg:#F87171;--dgb:#7F1D1D;--dgi:#FECACA;--bg:#0F172A;--sf:#1E293B;--bd:#334155;--tx:#F1F5F9;--tx2:#CBD5E1;--mu:#94A3B8}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--sf);z-index:30}
+h1{font-size:24px;margin:0 0 4px;font-weight:600}h2{font-size:18px;margin:0 0 8px;font-weight:600}p{margin:0 0 8px}.mu{color:var(--mu)}.sm{font-size:14px}
+:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+button{font:inherit;cursor:pointer}
+.btn{min-height:40px;padding:6px 14px;border-radius:6px;border:1px solid var(--bd);background:var(--sf);color:var(--tx);font-weight:500}
+.btn-p{background:var(--pri);border-color:var(--pri);color:var(--onp)}.btn-p:hover:not(:disabled){background:var(--prih)}
+.btn-d{background:var(--dg);border-color:var(--dg);color:var(--sf)}.btn:disabled{opacity:.5;cursor:not-allowed}.w{width:100%}
+.btn-sm{min-height:32px;padding:2px 10px;font-size:14px}
+.card{background:var(--sf);border:1px solid var(--bd);border-radius:10px;padding:16px;margin-bottom:16px;box-shadow:0 1px 2px rgba(17,24,39,.06)}
+label{display:block;font-size:14px;font-weight:500;margin-bottom:12px}.inp{display:block;width:100%;min-height:40px;margin-top:4px;padding:6px 10px;border:1px solid var(--bd);border-radius:6px;background:var(--sf);color:var(--tx);font:inherit}
+.inp.bad{border-color:var(--dg)}.err{color:var(--dg);font-size:14px;margin:-4px 0 8px}.pw{display:flex;gap:6px}.pw .inp{margin-top:4px}.pw .btn{margin-top:4px}
+.lg{min-height:100vh;display:grid;place-items:center;padding:16px}.lg .card{width:100%;max-width:380px}
+.side{position:fixed;left:0;top:env(safe-area-inset-top,0px);bottom:0;width:232px;background:var(--sf);border-right:1px solid var(--bd);padding:16px;display:flex;flex-direction:column;gap:4px;overflow:auto}
+.side b{margin-bottom:12px}.nv{text-align:left;border:0;background:none;padding:10px 12px;border-radius:6px;color:var(--tx2);min-height:44px;font-weight:500}
+.nv.on{background:var(--sec);color:var(--seci)}.main{margin-left:232px;padding:24px;max-width:1100px}
+.ph{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px}.cards .card{margin:0}.cards b{font-size:28px;display:block}
+.tw{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:14px}th{background:var(--bg);text-align:left;font-weight:600}th,td{padding:10px;border-bottom:1px solid var(--bd);white-space:nowrap}
+.bd{display:inline-flex;gap:4px;align-items:center;padding:2px 10px;border-radius:99px;font-size:14px;font-weight:500;background:var(--bd);color:var(--tx2)}
+.st-Hadir,.st-Lengkap{background:var(--okb);color:var(--oki)}.st-Izin{background:var(--sec);color:var(--seci)}.st-Sakit,.st-Sebagian{background:var(--wrb);color:var(--wri)}.st-Alpa{background:var(--dgb);color:var(--dgi)}
+.fl{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.fl .inp{width:auto;min-width:150px;margin:0}
+.empty{text-align:center;padding:32px 16px;color:var(--mu)}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.5);display:grid;place-items:center;padding:16px;z-index:50}.md{background:var(--sf);color:var(--tx);border-radius:14px;padding:20px;width:100%;max-width:520px;max-height:90vh;overflow:auto;box-shadow:0 12px 32px rgba(0,0,0,.3)}
+.ac{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
+#t{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);right:12px;left:12px;max-width:360px;margin-left:auto;z-index:60;background:var(--ok);color:#fff;padding:10px 14px;border-radius:8px;display:none;font-weight:500}
+.pm{max-width:520px;margin:0 auto;padding:16px 16px 96px}.bn{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--sf);border-top:1px solid var(--bd);padding:0 0 env(safe-area-inset-bottom,0px);z-index:20}
+.bn button{flex:1;min-height:60px;border:0;background:none;color:var(--mu);font-weight:500}.bn .on{color:var(--pri);font-weight:600}
+.sg{display:flex;gap:4px;margin-top:8px}.sg button{flex:1;min-height:48px;border:1px solid var(--bd);background:var(--sf);color:var(--tx);border-radius:6px;font-size:14px;padding:0 2px}
+.sg .on{background:var(--pri);border-color:var(--pri);color:var(--onp);font-weight:600}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--sf);border-top:1px solid var(--bd);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));display:flex;gap:12px;align-items:center;justify-content:space-between;z-index:20}
+.tabs{display:flex;border-bottom:1px solid var(--bd);margin-bottom:12px}.tabs button{border:0;background:none;padding:10px 14px;color:var(--mu);font-weight:500;border-bottom:3px solid transparent}.tabs .on{color:var(--pri);border-color:var(--pri)}
+.note{background:var(--sec);color:var(--seci);padding:10px 12px;border-radius:8px;margin-bottom:12px;font-size:14px}
+@media(max-width:899px){.side{position:static;width:auto;flex-direction:row;overflow-x:auto;padding:8px;border-right:0;border-bottom:1px solid var(--bd)}.side b{display:none}.nv{white-space:nowrap}.main{margin:0;padding:16px}}
+@media print{.side,.bn,.ph button,.fl{display:none}.main{margin:0}}
+</style>
+</head>
+<body>
+<div id="app"></div><div id="m"></div><div id="t" role="status"></div>
+<script>
+const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const ST=['Hadir','Izin','Sakit','Alpa'],IC={Hadir:'✓',Izin:'i',Sakit:'+',Alpa:'✕',Belum:'–'},HR=['Min','Sen','Sel','Rab','Kam','Jum','Sab'],TD=16;
+const wd=d=>new Date(2026,10,d).getDay(),fd=d=>`${HR[wd(d)]}, ${d} Nov 2026`;
+let students=[['Aulia Putri','Pemula A'],['Bima Saputra','Pemula A'],['Citra Lestari','Pemula A'],['Dewi Anggraini','Pemula B'],['Eko Prasetyo','Pemula B'],['Farah Nabila','Pemula B'],['Gilang Ramadhan','Menengah'],['Hana Safitri','Menengah'],['Indra Wijaya','Menengah'],['Jasmine Kirana','Lanjutan'],['Kevin Hartono','Lanjutan'],['Laras Wulandari','Lanjutan']].map((x,i)=>({id:i+1,n:x[0],k:x[1],w:'Wali '+x[0].split(' ')[0],on:true}));
+const KL=['Pemula A','Pemula B','Menengah','Lanjutan'];
+const sched=[{k:'Pemula A',d:[1,3],j:'16.00',p:'Rina Pratama'},{k:'Pemula B',d:[2,4],j:'16.00',p:'Dimas Kurniawan'},{k:'Menengah',d:[1,5],j:'17.30',p:'Rina Pratama'},{k:'Lanjutan',d:[1,3],j:'17.30',p:'Dimas Kurniawan'}];
+let sess=[],sid=0;
+for(let dt=9;dt<=TD;dt++)sched.forEach(s=>{if(s.d.includes(wd(dt))){const o={id:++sid,dt,k:s.k,j:s.j,p:s.p,a:{},ck:null};
+ if(dt<TD){o.ck='15.'+(40+sid%15);students.filter(x=>x.k===s.k).forEach(x=>{const r=(x.id*7+dt*3)%17;o.a[x.id]=r===0?'Izin':r===1?'Sakit':r===2?'Alpa':'Hadir'})}sess.push(o)}});
+const act=k=>students.filter(x=>x.k===k&&x.on),stat=s=>{const n=Object.keys(s.a).length;return n===0?'Belum diisi':n>=act(s.k).length?'Lengkap':'Sebagian'};
+const bg=s=>`<span class="bd st-${s}">${IC[s]||''} ${s}</span>`,sb=s=>`<span class="bd st-${s==='Belum diisi'?'':s}">${s}</span>`;
+let U=null,pg='',F={q:'',k:'',h:'',per:'all',lk:''},tab='Siswa',draft={},cur=null;
+const toast=t=>{const e=$('#t');e.textContent=t;e.style.display='block';clearTimeout(toast.i);toast.i=setTimeout(()=>e.style.display='none',4000)};
+const modal=h=>{$('#m').innerHTML=`<div class="ov" onclick="if(event.target===this)cl()" role="dialog" aria-modal="true"><div class="md">${h}</div></div>`;const f=$('#m input,#m select,#m button');f&&f.focus()},cl=()=>$('#m').innerHTML='';
+document.addEventListener('keydown',e=>{if(e.key==='Escape')cl()});
+const confirmD=(t,x,ok,fn,danger)=>{window._c=fn;modal(`<h2>${t}</h2><p>${x}</p><div class="ac"><button class="btn" onclick="cl()">Batal</button><button class="btn ${danger?'btn-d':'btn-p'}" onclick="cl();_c()">${ok}</button></div>`)};
+const go=(p,x)=>{pg=p;if(x)Object.assign(F,x);cl();render();scrollTo(0,0)};
+function login(){const e=$('#em').value.trim().toLowerCase(),p=$('#pw').value,m=$('#le');
+ if(!e||!p){m.textContent='Isi email dan kata sandi.';return}
+ if(p!=='demo123'||!['admin@xyz.test','pelatih@xyz.test'].includes(e)){m.textContent='Data login tidak sesuai.';return}
+ U=e[0]==='a'?{r:'a',n:'Admin XYZ'}:{r:'p',n:'Rina Pratama'};tab=U.r==='a'?'Siswa':'Kelas';pg=U.r==='a'?'dash':'home';render()}
+const out=()=>{U=null;cl();render()};
+const loginV=()=>`<div class="lg" onkeydown="if(event.key==='Enter')login()"><div class="card"><h1>XYZ Swimming Club</h1><p class="mu">Sistem Informasi Absensi (prototype, data dummy)</p>
+<label>Email atau username<input id="em" class="inp" autocomplete="username"></label><label>Kata sandi<span class="pw"><input id="pw" type="password" class="inp"><button class="btn" type="button" onclick="const i=$('#pw');i.type=i.type==='password'?'text':'password'">Tampilkan</button></span></label>
+<div id="le" class="err"></div><button class="btn btn-p w" onclick="login()">Masuk</button><p class="mu sm" style="margin-top:12px">Demo: admin@xyz.test atau pelatih@xyz.test · sandi demo123</p></div></div>`;
+const empty=(t,b)=>`<div class="empty"><p><b>${t}</b></p>${b||''}</div>`;
+const tbl=(h,r)=>`<div class="tw"><table><tr>${h.map(x=>`<th>${x}</th>`).join('')}</tr>${r.map(x=>`<tr>${x.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('')}</table></div>`;
+const sel=(id,opts,v,all)=>`<select id="${id}" class="inp" onchange="F['${id}']=this.value;render()">${all?`<option value="">${all}</option>`:''}${opts.map(o=>`<option ${o===v?'selected':''}>${o}</option>`).join('')}</select>`;
+const V={
+dash(){const t=sess.filter(s=>s.dt===TD),b=t.filter(s=>stat(s)!=='Lengkap');
+ return `<div class="ph"><h1>Dashboard</h1><span class="mu">Hari ini: ${fd(TD)}</span></div><div class="cards"><div class="card">Sesi hari ini<b>${t.length}</b></div><div class="card">Sesi belum lengkap<b>${b.length}</b></div><div class="card">Siswa aktif<b>${students.filter(x=>x.on).length}</b></div><div class="card">Pelatih aktif<b>2</b></div></div>
+ <div class="card"><h2>Sesi hari ini</h2>${b.length||t.length?tbl(['Kelas','Jam','Pelatih','Status',''],t.map(s=>[s.k,s.j,s.p,sb(stat(s)),`<button class="btn btn-sm" onclick="ses(${s.id})">Lihat</button>`])):empty('Tidak ada sesi hari ini')}</div>`},
+siswa(){const l=students.filter(x=>(!F.k||x.k===F.k)&&x.n.toLowerCase().includes(F.q.toLowerCase()));
+ return `<div class="ph"><h1>Data Siswa</h1><button class="btn btn-p" onclick="sf()">+ Tambah Siswa</button></div><div class="fl"><input class="inp" placeholder="Cari nama…" value="${esc(F.q)}" oninput="F.q=this.value;render(1)" aria-label="Cari nama">${sel('k',KL,F.k,'Semua kelas')}</div>
+ <div class="card">${l.length?tbl(['Nama','Kelas','Wali','Status',''],l.map(x=>[esc(x.n),x.k,esc(x.w),x.on?bg('Hadir').replace(/✓ Hadir/,'Aktif'):'<span class="bd">Nonaktif</span>',`<button class="btn btn-sm" onclick="sf(${x.id})">Edit</button> ${x.on?`<button class="btn btn-sm" onclick="nonaktif(${x.id})">Nonaktifkan</button>`:''}`])):empty('Tidak ada hasil',`<button class="btn" onclick="F.q='';F.k='';render()">Atur ulang filter</button>`)}</div>`},
+jadwal(){const l=sched.flatMap(s=>s.d.map(d=>({...s,d}))).filter(s=>!F.h||HR[s.d]===F.h).sort((a,b)=>a.d-b.d||a.j.localeCompare(b.j));
+ return `<div class="ph"><h1>Data Jadwal</h1></div><div class="fl">${sel('h',HR.slice(1,6),F.h,'Semua hari')}</div><div class="card">${tbl(['Hari','Jam','Kelas','Pelatih'],l.map(s=>[HR[s.d],s.j,s.k,s.p]))}</div>`},
+abs(){const l=sess.filter(s=>s.dt<=TD).sort((a,b)=>b.dt-a.dt||a.j.localeCompare(b.j));
+ return `<div class="ph"><h1>Absensi</h1></div><div class="tabs">${['Siswa','Pelatih'].map(t=>`<button class="${tab===t?'on':''}" onclick="tab='${t}';render()">${t}</button>`).join('')}</div><div class="card">`+
+ (tab==='Siswa'?tbl(['Tanggal','Kelas','Jam','Pelatih','Status',''],l.map(s=>[fd(s.dt),s.k,s.j,s.p,sb(stat(s)),`<button class="btn btn-sm" onclick="ses(${s.id})">Buka / koreksi</button>`])):
+ tbl(['Tanggal','Kelas','Pelatih','Check-in'],l.map(s=>[fd(s.dt),s.k,s.p,s.ck?bg('Hadir')+' '+s.ck:sb('Belum diisi')])))+'</div>'},
+lap(){const ss=sess.filter(s=>stat(s)!=='Belum diisi'&&(F.per==='all'||s.dt<=13)&&(!F.lk||s.k===F.lk));
+ const r=students.filter(x=>!F.lk||x.k===F.lk).map(x=>{const c={Hadir:0,Izin:0,Sakit:0,Alpa:0};ss.forEach(s=>{if(s.a[x.id])c[s.a[x.id]]++});const t=ST.reduce((a,k)=>a+c[k],0);return {x,c,t}}).filter(o=>o.t);
+ return `<div class="ph"><h1>Laporan Absensi</h1><button class="btn" onclick="print()">Cetak</button></div><div class="fl"><select class="inp" onchange="F.per=this.value;render()" aria-label="Periode"><option value="all" ${F.per==='all'?'selected':''}>Periode: 9–16 Nov 2026</option><option value="w" ${F.per==='w'?'selected':''}>Periode: 9–13 Nov 2026</option></select>${sel('lk',KL,F.lk,'Semua kelas')}<button class="btn" onclick="F.per='all';F.lk='';render()">Atur ulang</button></div>
+ <div class="card">${r.length?tbl(['Siswa','Kelas','Hadir','Izin','Sakit','Alpa','% Hadir',''],r.map(o=>[esc(o.x.n),o.x.k,o.c.Hadir,o.c.Izin,o.c.Sakit,o.c.Alpa,Math.round(o.c.Hadir/o.t*100)+'%',`<button class="btn btn-sm" onclick="det(${o.x.id})">Detail</button>`])):empty('Tidak ada data pada periode ini')}</div>`},
+home(){const t=sess.filter(s=>s.dt===TD&&s.p===U.n),b=t.filter(s=>stat(s)==='Belum diisi').length;
+ return `<h1>Halo, ${U.n.split(' ')[0]}</h1><p class="mu">${fd(TD)}</p>${b?`<div class="note">${b} sesi belum diisi absensinya.</div>`:''}<h2>Sesi hari ini</h2>`+(t.length?t.map(s=>`<div class="card"><b>${s.k}</b> · ${s.j}<p class="mu sm">${act(s.k).length} siswa · ${sb(stat(s))}</p>
+ ${s.ck?`<p class="sm">${bg('Hadir')} Check-in ${s.ck}</p>`:`<button class="btn w" style="margin-bottom:8px;min-height:48px" onclick="chk(${s.id})">Check-in</button>`}<button class="btn btn-p w" style="min-height:48px" onclick="ab(${s.id})">${stat(s)==='Lengkap'?'Ubah absensi':'Buka absensi'}</button></div>`).join(''):empty('Tidak ada sesi hari ini'))},
+jad(){const l=sched.filter(s=>s.p===U.n).flatMap(s=>s.d.map(d=>({...s,d}))).sort((a,b)=>a.d-b.d);
+ return `<h1>Jadwal</h1>`+l.map(s=>`<div class="card"><b>${HR[s.d]} · ${s.j}</b><p class="mu sm">${s.k} · ${act(s.k).length} siswa${s.d===wd(TD)?' · hari ini':''}</p>${s.d===wd(TD)?`<button class="btn btn-p w" style="min-height:48px" onclick="go('home')">Ke sesi hari ini</button>`:''}</div>`).join('')},
+riw(){const l=sess.filter(s=>s.p===U.n&&s.dt<=TD&&stat(s)!=='Belum diisi').sort((a,b)=>b.dt-a.dt);
+ return `<h1>Riwayat</h1><div class="tabs">${['Kelas','Pribadi'].map(t=>`<button class="${tab===t?'on':''}" onclick="tab='${t}';render()">${t}</button>`).join('')}</div>`+(l.length?l.map(s=>{const h=Object.values(s.a).filter(v=>v==='Hadir').length;return `<div class="card"><b>${fd(s.dt)}</b> · ${s.k}<p class="mu sm">${tab==='Kelas'?`${h} dari ${Object.keys(s.a).length} siswa hadir`:`Kehadiran Anda: ${s.ck?'Hadir, check-in '+s.ck:'Belum check-in'}`}</p></div>`}).join(''):empty('Belum ada riwayat'))},
+absen(){const s=cur,L=act(s.k),n=L.filter(x=>draft[x.id]).length;
+ return `<button class="btn btn-sm" onclick="go('home')">‹ Kembali</button><h1 style="margin-top:12px">Absensi · ${s.k}</h1><p class="mu sm">${fd(s.dt)} · ${s.j} · ${s.p}</p>${L.length?`<button class="btn w" style="min-height:48px;margin-bottom:12px" onclick="all()">Tandai semua Hadir</button>`+L.map(x=>`<div class="card" style="padding:12px"><b>${esc(x.n)}</b><div class="sg" role="group" aria-label="Status ${esc(x.n)}">${ST.map(v=>`<button class="${draft[x.id]===v?'on':''}" aria-pressed="${draft[x.id]===v}" onclick="setS(${x.id},'${v}')">${draft[x.id]===v?IC[v]+' ':''}${v}</button>`).join('')}</div></div>`).join('')+`<div class="bar"><span><b>${n}/${L.length}</b> terisi</span><button class="btn btn-p" style="min-height:48px" ${n<L.length?'disabled':''} onclick="sum()">Simpan</button></div>`:empty('Kelas belum memiliki siswa aktif')}`}};
+function render(keep){const a=$('#app');if(!U){a.innerHTML=loginV();return}
+ const ad=U.r==='a',nv=ad?[['dash','Dashboard'],['siswa','Siswa'],['jadwal','Jadwal'],['abs','Absensi'],['lap','Laporan']]:[['home','Beranda'],['jad','Jadwal'],['riw','Riwayat']];
+ const h=V[pg]();const q=keep&&document.activeElement.tagName==='INPUT'?document.activeElement.selectionStart:null;
+ a.innerHTML=ad?`<nav class="side" aria-label="Menu"><b>XYZ Swimming Club</b>${nv.map(x=>`<button class="nv ${pg===x[0]?'on':''}" onclick="go('${x[0]}')">${x[1]}</button>`).join('')}<button class="nv" style="margin-top:auto" onclick="out()">Keluar (${U.n})</button></nav><main class="main">${h}</main>`
+ :`<main class="pm">${h}</main>${pg==='absen'?'':`<nav class="bn" aria-label="Menu">${nv.map(x=>`<button class="${pg===x[0]?'on':''}" onclick="go('${x[0]}')">${x[1]}</button>`).join('')}<button onclick="out()">Keluar</button></nav>`}`;
+ if(q!==null){const i=a.querySelector('input.inp');i.focus();i.setSelectionRange(q,q)}}
+function sf(id){const x=students.find(s=>s.id===id)||{n:'',k:'',w:'',id:0};window._d=0;
+ modal(`<h2>${id?'Edit':'Tambah'} Siswa</h2><label>Nama lengkap*<input id="fn" class="inp" value="${esc(x.n)}"></label><div id="e1" class="err"></div><label>Kelas*<select id="fk" class="inp"><option value="">Pilih kelas</option>${KL.map(k=>`<option ${k===x.k?'selected':''}>${k}</option>`).join('')}</select></label><div id="e2" class="err"></div><label>Nama orang tua/wali<input id="fw" class="inp" value="${esc(x.w)}"></label><div id="e3" class="err"></div><div class="ac"><button class="btn" onclick="cl()">Batal</button><button id="sv" class="btn btn-p" onclick="ss(${x.id})">Simpan</button></div>`)}
+function ss(id){const n=$('#fn').value.trim(),k=$('#fk').value,w=$('#fw').value.trim();$('#e1').textContent=n?'':'Nama wajib diisi.';$('#e2').textContent=k?'':'Pilih kelas.';if(!n||!k)return;
+ if(!id&&!window._d&&students.some(s=>s.n.toLowerCase()===n.toLowerCase())){window._d=1;$('#e3').textContent='Ada siswa dengan nama yang sama. Tekan lagi untuk tetap menyimpan.';$('#sv').textContent='Tetap simpan';return}
+ if(id)Object.assign(students.find(s=>s.id===id),{n,k,w});else students.push({id:students.length+1,n,k,w,on:true});cl();render();toast(id?'Data siswa diperbarui.':'Siswa baru ditambahkan.')}
+const nonaktif=id=>{const x=students.find(s=>s.id===id);confirmD('Nonaktifkan siswa?',`<b>${esc(x.n)}</b> tidak akan muncul pada absensi baru. Riwayat tetap tersimpan.`,'Nonaktifkan',()=>{x.on=false;render();toast('Siswa dinonaktifkan.')},1)};
+function ses(id){const s=sess.find(x=>x.id===id);cur=s;draft={...s.a};modal(`<h2>${s.k} · ${fd(s.dt)}</h2><p class="mu sm">${s.j} · ${s.p}</p>${tbl(['Siswa','Status'],act(s.k).map(x=>[esc(x.n),`<select class="inp" style="margin:0" aria-label="Status ${esc(x.n)}" onchange="draft[${x.id}]=this.value"><option value="">Belum diisi</option>${ST.map(v=>`<option ${draft[x.id]===v?'selected':''}>${v}</option>`).join('')}</select>`]))}<label style="margin-top:12px">Alasan koreksi*<input id="ra" class="inp" placeholder="Contoh: salah catat"></label><div id="e1" class="err"></div><div class="ac"><button class="btn" onclick="cl()">Tutup</button><button class="btn btn-p" onclick="kor()">Simpan koreksi</button></div>`)}
+function kor(){const s=cur,ch=Object.keys(draft).some(k=>draft[k]&&draft[k]!==s.a[k])||Object.keys(s.a).some(k=>draft[k]!==s.a[k]);if(!ch){$('#e1').textContent='Belum ada perubahan status.';return}if(!$('#ra').value.trim()){$('#e1').textContent='Alasan koreksi wajib diisi.';return}
+ const d={};Object.keys(draft).forEach(k=>draft[k]&&(d[k]=draft[k]));s.a=d;cl();render();toast('Koreksi tersimpan beserta alasannya.')}
+function det(id){const x=students.find(s=>s.id===id);modal(`<h2>${esc(x.n)}</h2><p class="mu sm">${x.k}</p>${tbl(['Tanggal','Jam','Status'],sess.filter(s=>s.a[id]&&(F.per==='all'||s.dt<=13)).map(s=>[fd(s.dt),s.j,bg(s.a[id])]))}<div class="ac"><button class="btn btn-p" onclick="cl()">Tutup</button></div>`)}
+const chk=id=>{const d=new Date(),s=sess.find(x=>x.id===id);s.ck=String(d.getHours()).padStart(2,'0')+'.'+String(d.getMinutes()).padStart(2,'0');render();toast('Check-in tercatat.')};
+const ab=id=>{cur=sess.find(x=>x.id===id);draft={...cur.a};go('absen')},setS=(id,v)=>{draft[id]=v;const y=scrollY;render();scrollTo(0,y)},all=()=>{act(cur.k).forEach(x=>draft[x.id]=draft[x.id]||'Hadir');render()};
+function sum(){const c={Hadir:0,Izin:0,Sakit:0,Alpa:0};act(cur.k).forEach(x=>c[draft[x.id]]++);confirmD('Simpan absensi?',`${cur.k} · ${cur.j}<br>Hadir ${c.Hadir}, Izin ${c.Izin}, Sakit ${c.Sakit}, Alpa ${c.Alpa}`,'Simpan',()=>{cur.a={...draft};go('home');toast('Absensi berhasil disimpan.')})}
+render();
+</script>
+</body>
+</html>
